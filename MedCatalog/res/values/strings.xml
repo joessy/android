@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">药品目录</string>
+    <string name="search_text_name">药名</string>
+    <string name="search_bt_name">搜索</string>
+    <string name="menu_settings">设置</string>
+    <string name="s_view_btn">more</string>
+
+</resources>
