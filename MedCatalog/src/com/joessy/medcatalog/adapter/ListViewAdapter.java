@@ -58,7 +58,7 @@ public class ListViewAdapter extends BaseAdapter {
 
 				@Override
 				public void onClick(View v) {
-					Log.d("BUTTONTAG",(String)v.getTag());
+					Log.d("BUTTONTAG", (String) v.getTag());
 					showInfo((String) v.getTag());
 
 				}
@@ -90,20 +90,21 @@ public class ListViewAdapter extends BaseAdapter {
 	 */
 	public void showInfo(String str) {
 		StringBuilder tmp = new StringBuilder();
-		tmp.append("select * from \"201209\" where 药品名称 = \"").append(str)
+		tmp.append("select * from yao where 药品名称 = \"").append(str)
 				.append("\"");
 		Log.d("SQL", tmp.toString());
 		Cursor cursor = SQLiteDBAdapter.getCursor(tmp.toString());
 		tmp.delete(0, tmp.length());
-        
+
 		cursor.moveToFirst();
-		String name=cursor.getString(0);
-		tmp.append(cursor.getString(1)).append(" \n")
-				.append(cursor.getString(2)).append(" \n")
-				.append(cursor.getString(3)).append(" \n")
-				.append(cursor.getString(4)).append(" \n")
-				.append(cursor.getString(5));
-		
+		String name = cursor.getString(0);
+		tmp.append("名称：").append(cursor.getString(1)).append(" \n规格：")
+				.append(cursor.getString(2)).append(" \n单位：")
+				.append(cursor.getString(3)).append(" \n产地：")
+				.append(cursor.getString(4)).append(" \n进价：")
+				.append(cursor.getString(5)).append(" \n限价：")
+				.append(cursor.getString(6));
+
 		cursor.close();// 关闭结果集
 
 		new AlertDialog.Builder(ListViewAdapter.actContext).setTitle(name)

@@ -59,7 +59,7 @@ public class MainActivity extends ListActivity implements OnScrollListener {
 		EditText editText = (EditText) findViewById(R.id.search_text_name);
 		String str = editText.getText().toString();
 		StringBuilder tmp = new StringBuilder();
-		tmp.append("select * from \"201209\" where 药品名称 like \"%").append(str)
+		tmp.append("select * from yao where 药品名称 like \"%").append(str)
 				.append("%\"");
 		Log.d("SQL", tmp.toString());
 		Cursor cursor = SQLiteDBAdapter.getCursor(tmp.toString());
