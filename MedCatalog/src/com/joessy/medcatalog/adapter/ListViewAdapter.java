@@ -1,6 +1,7 @@
 package com.joessy.medcatalog.adapter;
 
 import java.util.List;
+import java.util.Map;
 
 import com.joessy.medcatalog.activity.R;
 
@@ -17,11 +18,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class ListViewAdapter extends BaseAdapter {
-	private List<String> items;
+	private List<Map<String, Object>> items;
 	private LayoutInflater inflater;
 	private static Context actContext;
 
-	public ListViewAdapter(Context context, List<String> items) {
+	public ListViewAdapter(Context context, List<Map<String, Object>> items) {
 		this.items = items;
 		ListViewAdapter.actContext = context;
 		inflater = (LayoutInflater) context
@@ -51,9 +52,11 @@ public class ListViewAdapter extends BaseAdapter {
 		}
 		if (items.size() != 0) {
 			TextView text = (TextView) view.findViewById(R.id.list_item_text);
+			TextView text1 = (TextView) view.findViewById(R.id.info);
 			Button bt = (Button) view.findViewById(R.id.view_btn);
-			bt.setTag(items.get(position));
-			text.setText(items.get(position));
+			bt.setTag((String)items.get(position).get("id"));
+			text.setText((String)items.get(position).get("title"));
+			text1.setText((String)items.get(position).get("info"));
 			bt.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -72,7 +75,7 @@ public class ListViewAdapter extends BaseAdapter {
 	 * 
 	 * @param item
 	 */
-	public void addItem(String item) {
+	public void addItem(Map<String, Object> item) {
 		items.add(item);
 	}
 
@@ -90,7 +93,7 @@ public class ListViewAdapter extends BaseAdapter {
 	 */
 	public void showInfo(String str) {
 		StringBuilder tmp = new StringBuilder();
-		tmp.append("select * from yao where Ò©Æ·Ãû³Æ = \"").append(str)
+		tmp.append("select * from yao where Ò©Æ·±àºÅ = \"").append(str)
 				.append("\"");
 		Log.d("SQL", tmp.toString());
 		Cursor cursor = SQLiteDBAdapter.getCursor(tmp.toString());
